@@ -408,6 +408,10 @@ def download_template(request, pk):
     resume_languages = ResumeLanguages.objects.filter(resume=resume)
     resume_summary = ResumeSummaries.objects.get(resume=resume)
     
+    image_url = None
+    if resume_header.resume_picture:
+        image_url = resume_header.resume_picture.url
+    
     context = {
         'resume': resume,
         'cv_head': resume_header,
@@ -416,6 +420,7 @@ def download_template(request, pk):
         'experiences': resume_experiences,
         'languages': resume_languages,
         'summary': resume_summary,
+        'resume_image_url': image_url,
     }
     
     return render(request, 'resume_builder/download_resume.html', context)
