@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %}
+    <!-- custom header -->
+{% endblock %}
+
+{% block content %}
+
+<!-- Body content goes here -->
+
+<div class="max-w-3xl mx-auto mt-10">
+    <!-- Header -->
+    <div class="mb-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-200 mb-2">{{ title }}</h2>
+        <p class="text-gray-400">{{ subtitle }}</p>
+    </div>
+
+    <!-- Existing Entries Card -->
+    {% if data %}
+    <div class="bg-white rounded-2xl shadow-md border border-gray-100 mb-8 overflow-hidden">
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+            <h3 class="font-semibold text-gray-700">Added Entries</h3>
+        </div>
+        <ul class="divide-y divide-gray-100">
+            {% for d in data %} 
+            {% if d.institution %}
+            <li class="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition">
+                <div>
+                    <span class="font-medium text-gray-800">{{d.institution}}</span>
+                    <span class="text-gray-500 mx-2">-</span>
+                    <span class="text-gray-600">{{d.degree}}</span>
+                </div>
+                <span class="text-sm text-gray-400">{{d.grade}}</span>
+            </li>
+            {% elif d.skill_name %}
+            <li class="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">{{d.skill_name}}</span>
+                    <span class="text-gray-500">{{d.skill_level}}</span>
+                </div>
+            </li>
+            {% elif d.company_name %}
+            <li class="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition">
+                <div>
+                    <span class="font-medium text-gray-800">{{ d.job_title }}</span>
+                    <span class="text-gray-500 mx-2">at</span>
+                    <span class="text-indigo-600">{{ d.company_name }}</span>
+                </div>
+            </li>
+            {% elif d.language_name %}
+            <li class="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">{{d.language_name}}</span>
+                    <span class="text-gray-500">-</span>
+                    <span class="text-gray-600">{{d.language_level}}</span>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Add Form Card -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+        <form method="POST" novalidate class="space-y-6">
+            {% csrf_token %}
+
+            <div class="space-y-4">
+                {{ form }}
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <button type="submit" 
+                    class="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-[1.02] shadow-md">
+                    Add Entry
+                </button>
+                <a href="{% url next_btn pk=resume.pk %}" 
+                    class="flex-1 text-center bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition">
+                    Next →
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

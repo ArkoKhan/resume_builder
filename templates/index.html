@@ -1,0 +1,114 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block header %}
+<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-slate-100 py-24">
+    <div class="text-center px-6 lg:px-0 max-w-4xl">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-slate-800 leading-tight">
+            Build Professional Resumes in Minutes
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-600">
+            Create, customize, and download polished resumes effortlessly. Designed for speed, flexibility, and real-world job applications.
+        </p>
+
+        <div class="mt-8 flex justify-center gap-4 flex-wrap">
+             <a href="{% url 'login' %}" class="px-6 py-3  bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
+                Log In
+            </a>
+            <a href="{% url 'signup' %}" class="px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition">
+                Sign Up
+            </a>
+            <a href="#features" class="px-6 py-3 text-gray-800 bg-green-300 border border-slate-600 rounded-xl hover:bg-green-200 transition">
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- FEATURES -->
+<section id="features" class="py-24 bg-slate-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-0">
+
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-800">Why Use This Resume Builder?</h2>
+            <p class="mt-4 text-slate-500 text-lg">
+                Everything you need to create and manage professional resumes in one place.
+            </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            <!-- Feature 1 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">Multiple Resumes</h3>
+                <p class="text-slate-600">
+                    Create and manage multiple resumes for different job roles or industries without limitations.
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">Professional Design</h3>
+                <p class="text-slate-600">
+                    Clean, modern layouts that help your resume stand out and look industry-ready.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">Editable Sections</h3>
+                <p class="text-slate-600">
+                    Update your experience, skills, and education anytime with flexible section editing.
+                </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">Download as PDF</h3>
+                <p class="text-slate-600">
+                    Export your resume instantly as a polished PDF ready for job applications.
+                </p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">Delete Anytime</h3>
+                <p class="text-slate-600">
+                    Remove resumes that are no longer needed and keep your dashboard clean.
+                </p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2">User-Friendly Workflow</h3>
+                <p class="text-slate-600">
+                    Simple step-by-step interface designed for speed and ease of use.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA SECTION -->
+<section class="py-24 bg-blue-600 text-center text-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-4">
+            Ready to Build Your Resume?
+        </h2>
+        <p class="text-lg mb-8 text-blue-100">
+            Start creating your professional resume now and take the next step in your career.
+        </p>
+        <a href="{% url 'signup' %}" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-semibold hover:bg-slate-100 transition">
+            Get Started
+        </a>
+    </div>
+</section>
+
+{% endblock %}

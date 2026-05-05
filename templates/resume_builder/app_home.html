@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% block title %}Resume Builder{% endblock %}
+
+{% block header %}
+    <!-- custom header -->
+{% endblock %}
+
+{% block content %}
+
+<!-- Body content goes here -->
+
+<div class="max-w-4xl mx-auto mt-10">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-blue-600 mb-3">Resume Builder</h1>
+        <p class="text-gray-300">Create and manage your professional resumes</p>
+    </div>
+
+    {% if resumes %}
+    <!-- Display resumes -->
+    <div class="grid gap-4">
+        {% for resume in resumes %}
+        <a href="{% url 'show_resume' pk=resume.pk %}" 
+            class="group block bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:border-blue-200 transition-all transform hover:-translate-y-1">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition">{{resume.title}}</h3>
+                    <p class="text-gray-500 text-sm mt-1">Created: {{resume.created_at|date:"F d, Y" }}</p>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400 group-hover:text-blue-600 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 text-center">
+        <div class="w-20 h-20 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">No Resumes Created</h3>
+        <p class="text-gray-500 mb-6">Start building your first professional resume</p>
+        <a href="{% url 'create_resume' %}" 
+            class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-8 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 shadow-md">
+            Create Resume
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

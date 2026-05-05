@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block header %}
+    <!-- custom header -->
+{% endblock %}
+
+{% block content %}
+<!-- Body content goes here -->
+
+<form method="POST" enctype="multipart/form-data" novalidate
+    class="max-w-2xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
+>
+    {% csrf_token %}
+
+    <div class="mb-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">{{ title }}</h2>
+    </div>
+
+ 
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Full Name -->
+        <div>
+            <label class="block mb-2 font-semibold text-gray-700">
+                {{ form.full_name.label }}
+            </label>
+            {{ form.full_name }}
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label class="block mb-2 font-semibold text-gray-700">
+                {{ form.email.label }}
+            </label>
+            {{ form.email }}
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <label class="block mb-2 font-semibold text-gray-700">
+                {{ form.phone_number.label }}
+            </label>
+            {{ form.phone_number }}
+        </div>
+
+        <!-- Address -->
+        <div class="md:col-span-2">
+            <label class="block mb-2 font-semibold text-gray-700">
+                {{ form.address.label }}
+            </label>
+            {{ form.address }}
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="md:col-span-2">
+            <label class="block mb-2 font-semibold text-gray-700">
+                Profile Picture
+            </label>
+            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl hover:border-blue-400 transition-colors cursor-pointer">
+                <div class="space-y-1 text-center">
+                    {{ form.resume_picture }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit"
+        class="w-full mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-[1.02] shadow-md">
+        Update
+    </button>
+
+</form>
+
+{% endblock %}
