@@ -442,7 +442,7 @@ class ResumePDFView(View):
     
             image_url = None
             if resume_header.resume_picture:
-                image_url = resume_header.resume_picture.url
+                image_url = f"https://resume-builder-t5yw.onrender.com/media/resume_pictures/{resume_header.resume_picture.url}"
             
             context = {
                 'resume': resume,
