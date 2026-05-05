@@ -41,7 +41,7 @@ def show_resume(request, pk):
     resume_skills = ResumeSkills.objects.filter(resume=resume)
     resume_experiences = ResumeExperiences.objects.filter(resume=resume)
     resume_languages = ResumeLanguages.objects.filter(resume=resume)
-    resume_summary = ResumeSummaries.objects.get(resume=resume)
+    resume_summary = ResumeSummaries.objects.filter(resume=resume).first()
     others= ResumeOtherSections.objects.filter(resume=resume)
     other_items = ResumeOtherSectionItems.objects.all()
     other_shorts = ResumeOtherSecShorts.objects.filter(resume=resume)
@@ -406,7 +406,7 @@ def download_template(request, pk):
     resume_skills = ResumeSkills.objects.filter(resume=resume)
     resume_experiences = ResumeExperiences.objects.filter(resume=resume)
     resume_languages = ResumeLanguages.objects.filter(resume=resume)
-    resume_summary = ResumeSummaries.objects.get(resume=resume)
+    resume_summary = ResumeSummaries.objects.filter(resume=resume).first()
     
     image_url = None
     if resume_header.resume_picture:
@@ -434,7 +434,7 @@ class ResumePDFView(View):
             resume_skills = ResumeSkills.objects.filter(resume=resume)
             resume_experiences = ResumeExperiences.objects.filter(resume=resume)
             resume_languages = ResumeLanguages.objects.filter(resume=resume)
-            resume_summary = ResumeSummaries.objects.get(resume=resume)
+            resume_summary = ResumeSummaries.objects.filter(resume=resume).first()
             others= ResumeOtherSections.objects.filter(resume=resume)
             other_items = ResumeOtherSectionItems.objects.all()
             other_shorts = ResumeOtherSecShorts.objects.filter(resume=resume)
