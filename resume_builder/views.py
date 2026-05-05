@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from utils.supabase import upload_file, delete_file
 import os
 
 
@@ -77,6 +78,10 @@ def create_resume(request):
             resume.save()
             resume_header = resume_header_form.save(commit=False)
             resume_header.resume = resume
+            if request.FILES.get('resume_picture'):
+                file = request.FILES['resume_picture']
+                image_url = upload_file(file)
+                resume_header.resume_picture = image_url
             resume_header.save()
             return redirect('add_education', pk= resume.pk)
     else:
@@ -241,11 +246,17 @@ def update_info(request, pk):
     if request.method == 'POST':
         form = ResumeHeaderForm(request.POST, request.FILES, instance=resume_header)
         if form.is_valid():
-            if 'resume_picture' in request.FILES:
-                # Delete old file if it exists
+            resume_header = form.save(commit=False)
+            if request.FILES.get('resume_picture'):
                 if resume_header.resume_picture:
-                    resume_header.resume_picture.delete(save=False)
-            form.save()
+                    delete_file(resume_header.resume_picture)
+
+                # ✅ upload new image
+                file = request.FILES['resume_picture']
+                image_url = upload_file(file)
+                resume_header.resume_picture = image_url
+
+            resume_header.save()
             return redirect('show_resume', resume_header.resume.pk)
     else:
         form = ResumeHeaderForm(instance=resume_header)
@@ -440,9 +451,7 @@ class ResumePDFView(View):
             other_shorts = ResumeOtherSecShorts.objects.filter(resume=resume)
             other_short_items = ResumeOtherSecShortItems.objects.all()
     
-            image_url = None
-            if resume_header.resume_picture:
-                image_url = resume_header.resume_picture.url
+            image_url = resume_header.resume_picture if resume_header.resume_picture else None
             
             context = {
                 'resume': resume,
@@ -508,7 +517,7 @@ def delete_resume(request, pk):
         resume_head = ResumeHeaders.objects.get(resume=resume)
         
         if resume_head.resume_picture:
-            resume_head.resume_picture.delete(save=False)
+            delete_file(resume_head.resume_picture)
         
     except ResumeHeaders.DoesNotExist:
         pass

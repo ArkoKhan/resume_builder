@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
-import cloudinary
 import os
 
 
@@ -49,8 +48,7 @@ INSTALLED_APPS = [
     'theme',
     'authentication',
     'resume_builder',
-    'cloudinary',
-    'cloudinary_storage',
+
 ]
 TAILWIND_APP_NAME = 'theme'
 
@@ -67,14 +65,6 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 #     secure=True,
 # )
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-    'SECURE': True,
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 MIDDLEWARE = [

@@ -20,7 +20,7 @@
     <!-- Sidebar -->
     <aside class="w-full md:w-1/3 bg-gray-900 text-white rounded-2xl shadow-lg flex flex-col items-center py-10 px-6 mb-8 md:mb-0">
         {% if cv_head.resume_picture %}
-        <img src="{{cv_head.resume_picture.url}}" alt="{{cv_head.full_name}}" class="w-32 h-32 rounded-full border-4 border-gray-700 object-cover shadow-md mb-6">
+        <img src="{{cv_head.resume_picture}}" alt="{{cv_head.full_name}}" class="w-32 h-32 rounded-full border-4 border-gray-700 object-cover shadow-md mb-6">
         {% else %}
         <div class="w-32 h-32 rounded-full border-4 border-gray-700 bg-gray-700 flex items-center justify-center mb-6">
             <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
