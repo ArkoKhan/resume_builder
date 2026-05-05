@@ -68,9 +68,9 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 # )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': os.getenv.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv.get('CLOUDINARY_API_SECRET'),
     'SECURE': True,
 }
 
