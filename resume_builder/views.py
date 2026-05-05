@@ -241,10 +241,10 @@ def update_info(request, pk):
     if request.method == 'POST':
         form = ResumeHeaderForm(request.POST, request.FILES, instance=resume_header)
         if form.is_valid():
-            if 'resume_picture' in request.FILES:
-                # Delete old file if it exists
-                if resume_header.resume_picture:
-                    resume_header.resume_picture.delete(save=False)
+            # if 'resume_picture' in request.FILES:
+            #     # Delete old file if it exists
+            #     if resume_header.resume_picture:
+            #         resume_header.resume_picture.delete(save=False)
             form.save()
             return redirect('show_resume', resume_header.resume.pk)
     else:
@@ -442,7 +442,7 @@ class ResumePDFView(View):
     
             image_url = None
             if resume_header.resume_picture:
-                image_url = f"https://resume-builder-t5yw.onrender.com/media/resume_pictures/{resume_header.resume_picture.url}"
+                image_url = resume_header.resume_picture.url
             
             context = {
                 'resume': resume,
