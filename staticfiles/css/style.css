@@ -1,0 +1,11 @@
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+}
+.success{
+	color: #09c81f !important;
+}
+
+.error{
+	color: #e00f0f !important;
+}
