@@ -437,7 +437,7 @@ class ResumePDFView(View):
     
             image_url = None
             if resume_header.resume_picture:
-                image_url = request.build_absolute_uri(resume_header.resume_picture.url)
+                image_url = resume_header.resume_picture.url
             
             context = {
                 'resume': resume,
