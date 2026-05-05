@@ -20,8 +20,8 @@ class ResumeHeaders(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(max_length=30)
     address = models.CharField(max_length=200)
-    # resume_picture = models.ImageField(upload_to='resume_pictures/', blank=True, null=True)
-    resume_picture = CloudinaryField('image', folder='resume_pictures/', blank=True, null=True)
+    resume_picture = models.ImageField(upload_to='resume_pictures/', blank=True, null=True)
+    # resume_picture = CloudinaryField('image', folder='resume_pictures/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.resume.user.username}'s Resume Header - {self.full_name}"
