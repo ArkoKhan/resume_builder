@@ -82,6 +82,7 @@ def create_resume(request):
             resume.save()
             resume_header = resume_header_form.save(commit=False)
             resume_header.resume = resume
+            resume_header.save()
             resume_header.resume_picture_link = image.upload(resume_header.resume_picture.url, resume.unique_name)
             resume_header.save()
             return redirect('add_education', pk= resume.pk)
@@ -252,8 +253,9 @@ def update_info(request, pk):
             #     # Delete old file if it exists
             #     if resume_header.resume_picture:
             #         resume_header.resume_picture.delete(save=False)
-            resume_header.resume_picture_link = image.upload(resume_header.resume_picture.url, resume_header.resume.unique_name)
             form.save()
+            resume_header.resume_picture_link = image.upload(resume_header.resume_picture.url, resume_header.resume.unique_name)
+            resume_header.save()
             return redirect('show_resume', resume_header.resume.pk)
     else:
         form = ResumeHeaderForm(instance=resume_header)
