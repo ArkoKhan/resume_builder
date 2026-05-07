@@ -10,10 +10,14 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from cloudinary_api import Image
+import uuid
 import os
 
 
 # Create your views here.
+
+image = Image()
 
 def app_home(request):
     if request.user.is_authenticated:
@@ -74,9 +78,11 @@ def create_resume(request):
         if resume_form.is_valid() and resume_header_form.is_valid():
             resume = resume_form.save(commit=False)
             resume.user = request.user
+            resume.unique_name = f"{request.user.username}@{uuid.uuid4().hex[:8]}"
             resume.save()
             resume_header = resume_header_form.save(commit=False)
             resume_header.resume = resume
+            resume_header.resume_picture_link = image.upload(resume_header.resume_picture.url, resume.unique_name)
             resume_header.save()
             return redirect('add_education', pk= resume.pk)
     else:
@@ -238,6 +244,7 @@ def add_summary(request, pk):
 
 def update_info(request, pk):
     resume_header = ResumeHeaders.objects.get(pk=pk)
+    
     if request.method == 'POST':
         form = ResumeHeaderForm(request.POST, request.FILES, instance=resume_header)
         if form.is_valid():
@@ -245,6 +252,7 @@ def update_info(request, pk):
             #     # Delete old file if it exists
             #     if resume_header.resume_picture:
             #         resume_header.resume_picture.delete(save=False)
+            resume_header.resume_picture_link = image.upload(resume_header.resume_picture.url, resume_header.resume.unique_name)
             form.save()
             return redirect('show_resume', resume_header.resume.pk)
     else:
