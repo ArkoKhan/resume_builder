@@ -29,7 +29,16 @@ class Image:
 
         upload_result = cloudinary.uploader.upload(file=file, public_id=name, overwrite=True)
         optimize_url, _ = cloudinary_url(source=name, fetch_format="auto", quality="auto")
-        auto_crop_url, _ = cloudinary_url(source=name, width=500, height=500, crop="auto", gravity="auto")
+        # auto_crop_url, _ = cloudinary_url(source=name, width=500, height=500, crop="auto", gravity="auto")
+        public_id = upload_result["public_id"]
+        auto_crop_url, _ = cloudinary_url(
+            public_id,
+            width=500,
+            height=500,
+            crop="auto",
+            gravity="auto",
+            version=upload_result["version"]
+        )
 
         return auto_crop_url
 
