@@ -254,8 +254,13 @@ def update_info(request, pk):
             #     if resume_header.resume_picture:
             #         resume_header.resume_picture.delete(save=False)
             form.save()
-            resume_header.resume_picture_link = image.upload(resume_header.resume_picture, resume_header.resume.unique_name)
-            resume_header.save()
+            # Only upload if a new image was submitted
+            if 'resume_picture' in request.FILES:
+                resume_header.resume_picture_link = image.upload(
+                    resume_header.resume_picture,
+                    resume_header.resume.unique_name
+                )
+                resume_header.save()
             return redirect('show_resume', resume_header.resume.pk)
     else:
         form = ResumeHeaderForm(instance=resume_header)
