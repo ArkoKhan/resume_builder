@@ -94,6 +94,10 @@ class ResumeEducationForm(forms.ModelForm):
                 'placeholder': 'CGPA(out of 4.0)/GPA(out of 5.0)',
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800'
             }),
+            'passing_year': forms.TextInput(attrs={
+                'placeholder': 'Which Year did you pass?',
+                'class': 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800'
+            }),
         }
                 
 
