@@ -73,13 +73,12 @@ class ResumeHeaderForm(forms.ModelForm):
 class ResumeEducationForm(forms.ModelForm):
     class Meta:
         model = ResumeEducations
-        fields = ['institution', 'degree', 'grade', 'start_date', 'end_date']
+        fields = ['institution', 'degree', 'grade', 'passing_year']
         labels = {
             'institution': 'Institution Name',
             'degree': 'Degree',
             'grade': 'Grade/Score',
-            'start_date': 'Start Date',
-            'end_date': 'End Date',
+            'passing_year':'Passing Year'
         }
         
         widgets = {
@@ -93,14 +92,6 @@ class ResumeEducationForm(forms.ModelForm):
             }),
             'grade': forms.TextInput(attrs={
                 'placeholder': 'CGPA(out of 4.0)/GPA(out of 5.0)',
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800'
-            }),
-            'start_date': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800'
-            }),
-            'end_date': forms.DateInput(attrs={
-                'type': 'date',
                 'class': 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800'
             }),
         }

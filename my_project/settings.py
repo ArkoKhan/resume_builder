@@ -33,6 +33,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['resume-builder-t5yw.onrender.com']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition

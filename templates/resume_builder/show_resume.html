@@ -230,7 +230,7 @@
                         <p class="text-blue-700">{{edication.institution}}</p>
                         <p class="text-gray-600 text-sm">Grade: {{edication.grade}}</p>
                     </div>
-                    <div class="text-gray-500 text-sm md:text-right">{{edication.start_date}} - {{edication.end_date}}</div>
+                    <div class="text-gray-500 text-sm md:text-right">Passing Year: {{edication.passing_year}}</div>
                     <div class="flex justify-end mt-1 md:mt-0 md:ml-4">
                         <a href="{% url 'delete_education' edication.pk %}" class="text-red-500 hover:text-red-600 text-sm">Delete</a>
                     </div>

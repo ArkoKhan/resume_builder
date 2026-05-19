@@ -32,8 +32,7 @@ class ResumeEducations(models.Model):
     institution = models.CharField(max_length=200)
     degree = models.CharField(max_length=150)
     grade = models.CharField(max_length=20)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    passing_year = models.CharField(max_length=20, default='2010')
     
     def __str__(self):
         return f"{self.resume.user.username}'s {self.resume.title} Education"

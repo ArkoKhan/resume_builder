@@ -131,6 +131,13 @@
         font-size: 12px;
         font-weight: bold;
     }
+    .other_des{
+        white-space: pre-wrap !important;
+        color: #212020;
+        font-weight: normal;
+        font-size: 12px;
+        padding-left: 10px;
+    }
 
     .date {
         font-size: 11px;
@@ -334,7 +341,7 @@
                         <p>Grade: {{edication.grade}}</p>
                     </div>
                     <div class="date">
-                        {{edication.start_date}} - {{edication.end_date}}
+                        Passing Year: {{edication.passing_year}}
                     </div>
                 </div>
             </div>
@@ -377,7 +384,7 @@
                 <div class="job-header">
                     <div>
                         <h3 style="padding-top: 5px;">{{item.title}}</h3>
-                        <div class="company" style="color: #111827; font-weight: normal; padding-left: 10px; white-space: pre-wrap;">{{item.description}}</div>
+                        <div class="other_des">{{item.description}}</div>
                     </div>
                     <div class="date">
                         
